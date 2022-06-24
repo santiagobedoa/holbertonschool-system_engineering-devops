@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# script that displays a list of currently running processes
+# but only the process that containg bash word
+ps auxf | grep "bash"
