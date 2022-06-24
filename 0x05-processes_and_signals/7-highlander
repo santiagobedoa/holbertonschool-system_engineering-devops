@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# prints indefinitely
+# prints I am invicible when receiving a signal
+trap "echo 'I am invincible!!!'" SIGTERM
+while true; do
+	echo "To infinity and beyond"
+	sleep 2
+done
