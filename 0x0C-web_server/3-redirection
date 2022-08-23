@@ -7,19 +7,11 @@ sudo apt-get -y upgrade
 # install nginx
 sudo apt-get -y install nginx
 
-# creates config file
-echo "server {
-	listen 80 default_server;
-	index index.nginx-debian.html;
-	server_name _;
-	root /var/www/html;
-	location /redirect_me {
-		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-	}
-}" > /etc/nginx/conf.d/santiagobedoa.tech.conf
-
 # creates index file
 echo "Hello World from BEDO" | sudo tee /var/www/html/index.nginx-debian.html
+
+# creates config file
+sed -i "/server_name _;/ a\\\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
 
 # start server
 sudo service nginx start
