@@ -13,7 +13,7 @@ sudo chmod 777 /etc/nginx/sites-available/
 sudo chmod 777 /etc/nginx/sites-available/default
 
 # creates index file
-echo "Hello World from BEDO" | sudo tee /var/www/html/index.nginx-debian.html
+echo "Hello World" | sudo tee /var/www/html/index.nginx-debian.html
 
 # start server
 sudo service nginx start
