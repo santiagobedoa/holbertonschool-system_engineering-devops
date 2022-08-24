@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# configure a web server
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install nginx
+# hello world in index page
+echo "Hello World" | sudo tee /var/www/html/index.nginx-debian.html
+# change permissions
+sudo chmod 777 /etc/nginx/sites-available/
+sudo chmod 777 /etc/nginx/sites-available/default
+# redirection to the youtube chanel
+sed -i "/listen 80 default_server;/ a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
+# 404-error-page set up
+echo "Ceci n'est pas une page" | sudo tee /var/www//html/bedo_404.html
+sed -i "/listen 80 default_server;/ a error_page 404 /bedo_404.html;" /etc/nginx/sites-available/default
+sudo service nginx start
