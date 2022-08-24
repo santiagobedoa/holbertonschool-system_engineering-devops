@@ -1,25 +1,10 @@
 #!/usr/bin/env bash
-
-# update and upgrade apt
-sudo apt-get -y update
-sudo apt-get -y upgrade
-
-# install nginx
-sudo apt-get -y install nginx
-
-#permission
-sudo chmod 777 /var/www/html/index.nginx-debian.html
+#Set up nginx web server into 4521-web-01 server.
+sudo apt -y update
+sudo apt -y upgrade
+sudo apt -y install nginx
+sudo service nginx start
 sudo chmod 777 /etc/nginx/sites-available/
 sudo chmod 777 /etc/nginx/sites-available/default
-
-# creates index file
-echo "Hello World" | sudo tee /var/www/html/index.nginx-debian.html
-
-# start server
-sudo service nginx start
-
-# creates config file
 sed -i "/listen 80 default_server;/ a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
-
-# start server
-sudo service nginx start
+sudo service nginx restart
