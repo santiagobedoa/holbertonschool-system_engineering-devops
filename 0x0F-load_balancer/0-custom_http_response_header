@@ -1,16 +1,29 @@
 #!/usr/bin/env bash
-# configure a web server
+# 3. Redirection
 sudo apt-get -y update
-sudo apt-get -y upgrade
 sudo apt-get -y install nginx
-# hello world in index page
-echo "Hello World" | sudo tee /var/www/html/index.nginx-debian.html
-# change permissions
+echo "Hello World" > /var/www/html/index.html
+sudo service nginx start
 sudo chmod 777 /etc/nginx/sites-available/
 sudo chmod 777 /etc/nginx/sites-available/default
-# redirection to the youtube chanel
-sed -i "/listen 80 default_server;/ a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
-# 404-error-page set up
-echo "Ceci n'est pas une page" | sudo tee /var/www//html/bedo_404.html
-sed -i "/listen 80 default_server;/ a error_page 404 /bedo_404.html;" /etc/nginx/sites-available/default
+if ! grep -e "rewrite ^/redirect_me" /etc/nginx/sites-available/default
+then
+    sed -i "/listen 80 default_server;/ a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
+fi
+
+# Add custom 404 page error
+sudo chmod 777 /var/www/html
+sudo chmod 777 /var/www/html/404_not_found.html
+echo "Ceci n'est pas une page" > /var/www/html/404_not_found.html
+if ! grep -e "error_page 404 /404_not_found.html" /etc/nginx/sites-available/default
+then
+    sed -i "/listen 80 default_server;/ a error_page 404 /404_not_found.html;" /etc/nginx/sites-available/default
+fi
 sudo service nginx restart
+
+
+if ! grep -e "add_header X-Served-By" /etc/nginx/nginx.conf
+then
+    sudo sed -i "/http {/ a add_header X-Served-By $HOSTNAME;" /etc/nginx/nginx.conf
+    sudo service nginx restart
+fi
