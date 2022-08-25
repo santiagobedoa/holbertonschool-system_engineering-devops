@@ -13,4 +13,4 @@ sed -i "/listen 80 default_server;/ a rewrite ^/redirect_me https://www.youtube.
 # 404-error-page set up
 echo "Ceci n'est pas une page" | sudo tee /var/www//html/bedo_404.html
 sed -i "/listen 80 default_server;/ a error_page 404 /bedo_404.html;" /etc/nginx/sites-available/default
-sudo service nginx start
+sudo service nginx restart
