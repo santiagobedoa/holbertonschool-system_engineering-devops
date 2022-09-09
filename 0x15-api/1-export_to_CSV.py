@@ -4,9 +4,9 @@ Uses https://jsonplaceholder.typicode.com along with an employee ID to
 return information about the employee's todo list progress
 """
 
+import csv
 import requests
 from sys import argv
-import csv
 
 
 def info_to_csv():
