@@ -25,7 +25,7 @@ def get_info():
         total_tasks,
     ))
     for task in completed_tasks:
-        print("\t {}".format(task["title"]))
+        print("\t{}".format(task["title"]))
 
 
 if __name__ == "__main__":

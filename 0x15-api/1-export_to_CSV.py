@@ -25,5 +25,6 @@ def info_to_csv():
                 str(task["title"])
             ])
 
+
 if __name__ == "__main__":
     info_to_csv()
