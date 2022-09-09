@@ -11,7 +11,8 @@ from sys import argv
 def get_info():
     # ORIGINAL ANSWER
     # url_employee = "https://jsonplaceholder.typicode.com/users/"
-    # employee_info = (requests.get("{}{}".format(url_employee, argv[1]))).json()
+    # employee_info = (requests.get("{}{}".format(
+    # url_employee, argv[1]))).json()
     # url_tasks = "https://jsonplaceholder.typicode.com/todos?userId="
     # tasks_info = (requests.get("{}{}".format(url_tasks, argv[1]))).json()
     # total_tasks = 0
