@@ -4,8 +4,8 @@ Uses https://jsonplaceholder.typicode.com along with an employee ID to
 return information about the employee's todo list progress
 """
 
-import requests
 import json
+import requests
 
 
 def info_to_json():
