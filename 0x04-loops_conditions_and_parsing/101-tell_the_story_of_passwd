@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# script that uses the info in /etc/passwd to make an story
+while read -r p; do
+	USERNAME=$(echo "$p" | cut -d ":" -f 1)
+	PASSWORD=$(echo "$p" | cut -d ":" -f 2)
+	USER_ID=$(echo "$p" | cut -d ":" -f 3)
+	GROUP_ID=$(echo "$p" | cut -d ":" -f 4)
+	USER_ID_INFO=$(echo "$p" | cut -d ":" -f 5)
+	DIR=$(echo "$p" | cut -d ":" -f 6) 
+	COMMAND=$(echo "$p" | cut -d ":" -f 7)
+	echo "The user $USERNAME is part of the $GROUP_ID gang, lives in $DIR and rides $COMMAND. $USER_ID's place is protected by the passcode $PASSWORD, more info about the user here: $USER_ID_INFO"
+done < /etc/passwd

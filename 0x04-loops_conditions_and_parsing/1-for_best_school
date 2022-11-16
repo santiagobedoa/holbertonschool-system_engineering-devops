@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Prints string 10 times via for loop
+for _ in {0..9}
+do
+	echo "Best School"
+done
